@@ -1,13 +1,14 @@
 FROM node:alpine
 
-WORKDIR '/app'
-
-COPY package.json .
-
-RUN npm install
-COPY . .
-
-RUN npm run build
+USER node
  
-FROM nginx
+RUN mkdir -p /home/node/app
+WORKDIR /home/node/app
+
+COPY --chown=node:node ./package.json ./
+RUN npm install
+COPY --chown=node:node ./ ./
+
+CMD ["npm", "run", "start"]
+
 COPY --from=0 /app/build /usr/share/nginx/html
