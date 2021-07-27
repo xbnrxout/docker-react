@@ -10,5 +10,3 @@ RUN npm install
 COPY --chown=node:node ./ ./
 
 CMD ["npm", "run", "start"]
-
-COPY --from=0 /app/build /usr/share/nginx/html
