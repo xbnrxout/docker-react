@@ -7,5 +7,3 @@ before_install:
 
 script:
   - docker run -e CI=true xbnrxout/udemy_docker_kubernetes npm run test
-#language: generic
-#
